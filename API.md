@@ -5,10 +5,14 @@ Basic contracts of functions:
 
 # Basic Array Operations
 
-### .mixin()
+### .mixin(array)
 
 _Optionally_ mix in the following functions into the `Array` prototype. Otherwise
 you can use them off of the simple-statistics object itself.
+
+If given a particular array instance as an argument, this adds the functions
+only to that array rather than the global `Array.prototype`. Without an argument,
+it runs on the global `Array.prototype`.
 
 ### .mean(x)
 
@@ -17,6 +21,12 @@ Mean of a single-dimensional Array of numbers. _Also available as `.average(x)`_
 ### .sum(x)
 
 Sum of a single-dimensional Array of numbers.
+
+### .mode(x)
+
+Returns the number that appears most frequently in a single-dimensional Array
+of numbers. If there are multiple modes, the one that appears last
+is returned.
 
 ### .variance(x)
 
@@ -42,6 +52,10 @@ Also aliased to `.mad(x)` for brevity.
 
 [Geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of a single-dimensional array of **positive** numbers.
 
+### .harmonic_mean(x)
+
+[Harmonic mean](http://en.wikipedia.org/wiki/Harmonic_mean) of a single-dimensional array of **positive** numbers.
+
 ### .min(x)
 
 Finds the minimum of a single-dimensional array of numbers. This runs in linear `O(n)` time.
@@ -53,6 +67,16 @@ Finds the maximum of a single-dimensional array of numbers. This runs in linear 
 ### .t_test(sample, x)
 
 Does a [student's t-test](http://en.wikipedia.org/wiki/Student's_t-test) of a dataset `sample`, represented by a single-dimensional array of numbers. `x` is the known value, and the result is a measure of [statistical significance](http://en.wikipedia.org/wiki/Statistical_significance).
+
+### .t_test_two_sample(sample_x, sample_y, difference)
+
+The two-sample t-test is used to compare samples from two populations or groups,
+confirming or denying the suspicion (null hypothesis) that the populations are
+the same. It returns a t-value that you can then look up to give certain
+judgements of confidence based on a t distribution table.
+
+This implementation expects the samples `sample_x` and `sample_y` to be given
+as one-dimensional arrays of more than one number each.
 
 ### .sample_variance(x)
 
@@ -73,8 +97,16 @@ of two single-dimensional arrays of numbers.
 
 Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
 at p. For those familiary with the `k/q` syntax, `p == k/q`. `sample` must
-be a single-dimensional array of numbers, and p must be a number greater
-than zero and less than one.
+be a single-dimensional array of numbers. p must be a number greater than or equal to
+than zero and less or equal to than one, or an array of numbers following that rule.
+If an array is given, an array of results will be returned instead of a single
+number.
+
+### .quantile_sorted(sample, p)
+
+Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
+at p. `sample` must be a one-dimensional _sorted_ array of numbers, and
+`p` must be a single number from zero to one.
 
 ### .iqr(sample)
 

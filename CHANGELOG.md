@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.8.1
+
+* fixes a bug in `mode` that favored the last new number
+
+## 0.8.0
+
+* `mixin` can now take an array in order to mixin functions into a single array
+  instance rather than the global Array prototype.
+
+## 0.7.0
+
+* Adds `simple_statistics.harmonic_mean` thanks to [jseppi](https://github.com/jseppi)
+
+## 0.6.0
+
+* Adds `simple_statistics.quantile_sorted` thanks to [rluta](http://github.com/rluta)
+* `simple_statistics.quantile` now accepts a sorted list of quantiles as a second argument
+* Improved test coverage
+
 ## 0.5.0
 
 * Adds `simple_statistics.cumulative_std_normal_probability` by [doronlinder](https://github.com/doronlinder)
